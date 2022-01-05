@@ -124,7 +124,7 @@ Email.addEventListener("blur", () => {
 Email.addEventListener("keyup", () => {
     if (EmaiREXP.test(Email.value) == "") {
         Email.style.border = "1px solid red";
-        emailmess.innerHTML = `<p class="text-danger">User Must Be 6 to 15 Caracter  </p>`
+        emailmess.innerHTML = `<p class="text-danger">Plase Input Your Valid Email  </p>`
     } else {
         Email.style.border = "1px solid green";
         emailmess.innerHTML = ""
