@@ -29,32 +29,30 @@ const PasswordREXP = /^[a-zA-Z0-9@#$%&*_-]{8,20}$/
 
 formSubmit.addEventListener("submit", (e) => {
     e.preventDefault();
+    
 
-    if (Name.value == false || UserName.value == false || Email.value == false || ConfirmEmail.value == false || Password.value == false || ConfirmPassword.value == false) {
-        formresult.innerHTML = `<p class="alert alert-danger"> All fields Requird</p>`
-
+    if (Name.value == false) {
         namemess.innerHTML = `<p class="text-danger"> Name fields Requird</p>`
         Name.style.border = "1px solid red";
-
+    } else if (UserName.value == false) {
         usernamemess.innerHTML = `<p class="text-danger"> User Name fields Requird</p>`
         UserName.style.border = "1px solid red";
-
+    } else if (Email.value == false) {
         emailmess.innerHTML = `<p class="text-danger"> Email fields Requird</p>`
         Email.style.border = "1px solid red";
-
+    } else if (ConfirmEmail.value == false) {
         conemailmess.innerHTML = `<p class="text-danger"> Confirm Email fields Requird</p>`
         ConfirmEmail.style.border = "1px solid red";
-
+    } else if(Password.value == false) {
         passmess.innerHTML = `<p class="text-danger"> Password fields Requird</p>`
         Password.style.border = "1px solid red";
-
+    } else if(ConfirmPassword.value == false) {
         conpassmess.innerHTML = `<p class="text-danger"> Confirm Password fields Requird</p>`
-        ConfirmPassword.style.border = "1px solid red";
-    } else {
+    ConfirmPassword.style.border = "1px solid red";
+    } else{
         formresult.innerHTML = `<p class="alert alert-success"> Data Stable </p>`
-        // ConfirmPassword.style.border = "1px solid green";
     }
-})
+}) 
 
 
 
@@ -141,7 +139,7 @@ Password.addEventListener("blur", () => {
         passmess.innerHTML = `<p class="text-danger">Password fields Requird </p>`
     } else {
         Password.style.border = "1px solid green";
-        passmess.innerHTML =""
+        passmess.innerHTML = ""
     }
 
 })
@@ -151,7 +149,7 @@ Password.addEventListener("keyup", () => {
         passmess.innerHTML = `<p class="text-danger">Password Must Be 8 to 20 Caracter </p>`
     } else {
         Password.style.border = "1px solid green";
-        passmess.innerHTML =""
+        passmess.innerHTML = ""
     }
 
 })
@@ -163,7 +161,7 @@ ConfirmPassword.addEventListener("blur", () => {
         conpassmess.innerHTML = `<p class="text-danger">Confirm Password fields Requird </p>`
     } else {
         ConfirmPassword.style.border = "1px solid green";
-        conpassmess.innerHTML =""
+        conpassmess.innerHTML = ""
     }
 
 })
@@ -180,22 +178,22 @@ ConfirmPassword.addEventListener("keyup", () => {
 
 
 
-eye1.addEventListener("click" ,()=>{
-    if(Password.type == "password"){
+eye1.addEventListener("click", () => {
+    if (Password.type == "password") {
         Password.setAttribute('type', 'text')
         eye1.innerHTML = `<i class="far fa-eye-slash"></i>`
-    } else if(Password.type == "text") {
+    } else if (Password.type == "text") {
         Password.setAttribute("type", "password")
         eye1.innerHTML = `<i class="far fa-eye"></i>`
     }
 })
 
 
-eye2.addEventListener("click" ,()=>{
-    if(Password.type == "password"){
+eye2.addEventListener("click", () => {
+    if (Password.type == "password") {
         Password.setAttribute('type', 'text')
         eye2.innerHTML = `<i class="far fa-eye-slash"></i>`
-    } else if(Password.type == "text") {
+    } else if (Password.type == "text") {
         Password.setAttribute("type", "password")
         eye2.innerHTML = `<i class="far fa-eye"></i>`
     }
