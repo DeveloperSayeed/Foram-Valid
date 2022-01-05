@@ -7,6 +7,7 @@ const Password = document.getElementById("Password");
 const ConfirmPassword = document.getElementById("ConfirmPassword");
 const submitButton = document.getElementById("submitButton");
 const formresult = document.getElementById("formresult");
+const result =document.querySelector("#result")
 
 const eye1 = document.querySelector(".eye1")
 const eye2 = document.querySelector(".eye2")
@@ -31,26 +32,44 @@ formSubmit.addEventListener("submit", (e) => {
     e.preventDefault();
     
 
-    if (Name.value == false) {
+    if (NameREXP.test(Name.value) == false) {
         namemess.innerHTML = `<p class="text-danger"> Name fields Requird</p>`
         Name.style.border = "1px solid red";
-    } else if (UserName.value == false) {
+    } else if (UserNameREXP.test(UserName.value) == false) {
         usernamemess.innerHTML = `<p class="text-danger"> User Name fields Requird</p>`
         UserName.style.border = "1px solid red";
-    } else if (Email.value == false) {
+    } else if (EmaiREXP.test(Email.value) == false) {
         emailmess.innerHTML = `<p class="text-danger"> Email fields Requird</p>`
         Email.style.border = "1px solid red";
-    } else if (ConfirmEmail.value == false) {
-        conemailmess.innerHTML = `<p class="text-danger"> Confirm Email fields Requird</p>`
+    } else if (Email.value == ConfirmEmail.value === false) {
+        conemailmess.innerHTML = `<p class="text-danger"> Email are Not Matching</p>`
         ConfirmEmail.style.border = "1px solid red";
-    } else if(Password.value == false) {
+    } else if(PasswordREXP.test(Password.value) == false) {
         passmess.innerHTML = `<p class="text-danger"> Password fields Requird</p>`
         Password.style.border = "1px solid red";
-    } else if(ConfirmPassword.value == false) {
-        conpassmess.innerHTML = `<p class="text-danger"> Confirm Password fields Requird</p>`
+    } else if(Password.value == ConfirmPassword.value == false) {
+        conpassmess.innerHTML = `<p class="text-danger"> Password are Not Matching</p>`
     ConfirmPassword.style.border = "1px solid red";
     } else{
         formresult.innerHTML = `<p class="alert alert-success"> Data Stable </p>`
+        result.innerHTML =`
+        Name             = ${Name.value}
+        User Name        = ${UserName.value}
+        Email            = ${Email.value}
+        Confirm Email    = ${ConfirmEmail.value}
+        Password         = ${Password.value}
+        confirm PAssword = ${ConfirmPassword.value}
+        `
+        setInterval(()=>{
+
+        Name.value =""
+        UserName.value =""
+        Email.value= ""
+        ConfirmEmail.value =""
+        Password.value =""
+        ConfirmPassword.value =""
+        },10000)
+
     }
 }) 
 
@@ -116,6 +135,8 @@ ConfirmEmail.addEventListener("blur", () => {
     if (ConfirmEmail.value == "") {
         ConfirmEmail.style.border = "1px solid red";
         conemailmess.innerHTML = `<p class="text-danger"> Confirm Emaill fields Requird</p>`
+    } else{
+        conemailmess.innerHTML = ""
     }
 })
 
@@ -156,7 +177,7 @@ Password.addEventListener("keyup", () => {
 
 // Input confirm Password valadition 
 ConfirmPassword.addEventListener("blur", () => {
-    if (ConfirmPassword.value == "") {
+    if (PasswordREXP.test(ConfirmPassword.value) == "") {
         ConfirmPassword.style.border = "1px solid red";
         conpassmess.innerHTML = `<p class="text-danger">Confirm Password fields Requird </p>`
     } else {
@@ -176,7 +197,7 @@ ConfirmPassword.addEventListener("keyup", () => {
 
 })
 
-
+// Eye icon function
 
 eye1.addEventListener("click", () => {
     if (Password.type == "password") {
@@ -190,11 +211,11 @@ eye1.addEventListener("click", () => {
 
 
 eye2.addEventListener("click", () => {
-    if (Password.type == "password") {
-        Password.setAttribute('type', 'text')
+    if (ConfirmPassword.type == "password") {
+        ConfirmPassword.setAttribute('type', 'text')
         eye2.innerHTML = `<i class="far fa-eye-slash"></i>`
-    } else if (Password.type == "text") {
-        Password.setAttribute("type", "password")
+    } else if (ConfirmPassword.type == "text") {
+        ConfirmPassword.setAttribute("type", "password")
         eye2.innerHTML = `<i class="far fa-eye"></i>`
     }
 })
