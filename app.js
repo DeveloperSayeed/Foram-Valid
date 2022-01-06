@@ -20,7 +20,7 @@ const conemailmess = document.getElementById("conemailmess");
 const passmess = document.getElementById("passmess");
 const conpassmess = document.getElementById("conpassmess");
 
-const NameREXP = /^[A-Za-z ]*$/;
+const NameREXP = /^[A-Za-z\w]+$/;
 const UserNameREXP = /^[a-z0-9@#$%-_]{6,15}$/;
 const EmaiREXP = /^[a-z0-9-\.]+@[a-z]+\.[a-z-\.]+$/;
 const PasswordREXP = /^[a-zA-Z0-9@#$%&*_-]{8,20}$/
@@ -29,13 +29,16 @@ const PasswordREXP = /^[a-zA-Z0-9@#$%&*_-]{8,20}$/
 
 
 formSubmit.addEventListener("submit", (e) => {
+
     e.preventDefault();
-    
+  
 
     if (NameREXP.test(Name.value) == false) {
-        namemess.innerHTML = `<p class="text-danger"> Name fields Requird</p>`
+        namemess.innerHTML =  `<p class="text-danger"> Name fields are Requird</p>`
         Name.style.border = "1px solid red";
-    } else if (UserNameREXP.test(UserName.value) == false) {
+    } 
+    
+    else if (UserNameREXP.test(UserName.value) == false) {
         usernamemess.innerHTML = `<p class="text-danger"> User Name fields Requird</p>`
         UserName.style.border = "1px solid red";
     } else if (EmaiREXP.test(Email.value) == false) {
@@ -86,7 +89,7 @@ Name.addEventListener("blur", () => {
 Name.addEventListener("keyup", () => {
     if (NameREXP.test(Name.value) == "") {
         Name.style.border = "1px solid red";
-        namemess.innerHTML = `<p class="text-danger">Plase Write Right Formate </p>`
+        namemess.innerHTML = `<p class="text-danger">Plase Write only </p>`
     } else {
         Name.style.border = "1px solid green";
         namemess.innerHTML = ""
